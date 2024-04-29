@@ -1,0 +1,43 @@
+import os
+class student():
+    pass
+
+class admin():
+    pass
+class database:
+    def __init__(self,filename):
+        self.filename = "students.data.txt"
+
+    #create a file 
+    def create_file(self):
+        with open("students.data.txt","w") as f:
+            f.write("Database created for this registered student")
+
+    def clear_database_file(self): 
+        try:
+            if os.path.exists(self.filename):
+               os.remove(self.filename)
+               print(f"File '{self.filename} deleted successfully'")
+            else:
+                print("f{self.filename} doesnot exist")     
+        except Exception as e:
+            print(f"Error occured deleting a file")        
+
+
+
+while True:
+    print("\n Admin System Menu")
+    print("(c) Clear database file")
+    print("(g) Group students") 
+#     print("(p) Partition student")
+#     print("(r) Remove student")
+#     print("(s) Show Student")
+#     print("(x) Exit")
+    
+    choice = input("Enter your choice:")
+
+    if choice == "c":
+        admin.clear_database_file()
+    elif choice == "g":
+        
+        
