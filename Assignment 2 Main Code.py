@@ -1,7 +1,8 @@
 ########################################################
 #32555 - Fundamentals of Software Development - AT 1.2 #
 # Coded by Jacob Everson
-# Word colour edited by Jonathan Hong 
+# Bug tested and edited by Jonathan Hong 
+# GUI done by Bishal Subedi
 ########################################################
 
 import re
@@ -73,7 +74,7 @@ class Student:
                         # Assign the new password
                         self.password = new_password
                         break
-
+                        ## New password not assigned
                     else:
 
                         print("\033[31m Password does not match - try again \033[0m")
@@ -87,6 +88,7 @@ class Student:
 
         # While more subjects in a record, print them out
         for subject in self.subjects:
+            # need to get subject printed, self.subjects being used?
             print("test")
 
 class Subject:
@@ -165,7 +167,7 @@ class Database:
                     # Split up the data save against each row, format should be 'ID', 'Name', 'Email', 'Password', and 'Subjects'
                     data = line.strip().split(",")
 
-                    # Declares new student with 'Name', 'Email', and 'Passowrd'
+                    # Declares new student with 'Name', 'Email', and 'Password'
                     student = Student(data[1], data[2], data[3])
 
                     # Loops for each subject in student record
@@ -201,6 +203,87 @@ class Database:
 
         else:
             return  
+
+    """
+    ## Bootlegging this part, puesocode for the most part, this need to get hooked to the student file to do anything, we might need to do a last minute swap to pickle but that just me
+
+    group
+
+    @staticmethod
+    def partition_student(student,subject):
+    
+        print("\033[33m  lists \033[0m")
+        
+        students = Database.read_student_data()
+        for student in students:
+
+            if student.email == email and student.subject == subject:
+                # Going off Student formatting: Name, ID, email
+                print("subject.mark Student[2], :: Student[1], --> Student[3]")
+                return student
+
+        return None
+
+    partiton
+
+    @staticmethod
+    def partition_student(student,subject):
+    
+        print("\033[33m Students lists \033[0m")
+        
+        students = Database.read_student_data()
+        for student in students:
+
+            if student.email == email:
+                # Going off Student formatting: Name, ID, email
+                if (grade > 50)
+                    print("PASS --> Student[2], :: Student[1], --> Student[3]")
+                
+                elif
+                    print("FAIL --> Student[2], :: Student[1], --> Student[3]")
+                
+                return student
+
+        return None
+
+    remove
+
+    @staticmethod
+    def partition_student(student,subject):
+    
+        print("Remove by ID")
+        
+        students = Database.read_student_data()
+        for student in students:
+
+            if student.email == email and student.password == password::
+                # Going off Student formatting: Name, ID, email
+                print("Student[2], :: Student[1], --> Student[3]")
+                return student
+
+        print
+
+        return None
+
+    show
+
+    @staticmethod
+    def partition_student(student,subject):
+    
+        print("\033[33m Students lists \033[0m")
+        
+        students = Database.read_student_data()
+        for student in students:
+
+            if student.email == email and student.password == password:
+                # Going off Student formatting: Name, ID, email
+                print("Student[2], Student[1], Student[3]")
+
+                return student
+
+        return None
+
+    """
 
     # Check to see if the student already exists in the database
     @staticmethod
@@ -250,6 +333,23 @@ class AdminSystem:
 
             if choice == 'c':
                 Database.clear_data()
+
+        ## Missing functions, need to try and link with database
+
+            elif choice == 'g':
+                # Won't display registered student
+                Database.read_student_data()
+                pass
+        
+        # Check database class 
+            elif choice == 'p':
+                pass             
+
+            elif choice == 'r':
+                pass
+
+            elif choice == 's':
+                pass 
 
             elif choice == 'x':
                 break
@@ -353,7 +453,7 @@ class StudentCourseSystem:
         while True:
 
             # Chose an option within the student menu
-            choice = input("Student Course Menu (c/e/r/s/x): ").lower()
+            choice = input("\033[34m Student Course Menu (c/e/r/s/x): \033[0m").lower()
 
             # Change password
             if choice == 'c':
