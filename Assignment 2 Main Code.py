@@ -32,19 +32,19 @@ class Student:
     def add_subject(self, subject):
         if len(self.subjects) < 4:
             self.subjects.append(subject)
-            print(f"\033[33m Enrolling in Subject-{subject.id} \033[0m")
-            print(f"\033[33m You are now enrolled in {len(self.subjects)} out of 4 subjects \033[0m")
+            print(f"                \033[33m Enrolling in Subject-{subject.id} \033[0m")
+            print(f"                \033[33m You are now enrolled in {len(self.subjects)} out of 4 subjects \033[0m")
         else:
-            print("\033[31m Students are allowed to enrol in 4 subjects only \033[0m")
+            print("                \033[31m Students are allowed to enrol in 4 subjects only \033[0m")
 
     # Removes a subject if any exist
     def remove_subject(self, subject):
         if subject in self.subjects:
             self.subjects.remove(subject)
-            print(f"\033[33m Dropping Subject-{subject.id} \033[0m")
-            print(f"\033[33m You are now enrolled in {len(self.subjects)} out of 4 subjects \033[0m")
+            print(f"                \033[33m Dropping Subject-{subject.id} \033[0m")
+            print(f"                \033[33m You are now enrolled in {len(self.subjects)} out of 4 subjects \033[0m")
         else:
-            print("\033[31m Subject not found. \033[0m")
+            print("                \033[31m Subject not found. \033[0m")
 
     # Changes the password
     def change_password(self, new_password):
@@ -55,7 +55,7 @@ class Student:
                 # Keep asking for the confirmation password until it matches the new password
                 while True:
                     # Get a confirmation password
-                    confirm_password = input("Confirm Password: ")
+                    confirm_password = input("                 Confirm Password: ")
 
                     # Check to see if the confirmation password matches the new password
                     if confirm_password == new_password:
@@ -65,19 +65,19 @@ class Student:
                         # Update the student data in the file
                         Database.update_student_data(self)
 
-                        print("\033[33m Password successfully changed and saved \033[0m")
+                        print("                \033[33m Password successfully changed and saved \033[0m")
                         break
                     else:
-                        print("\033[31m Password does not match - try again \033[0m")
+                        print("                \033[31m Password does not match - try again \033[0m")
                 break
 
     # Shows all enrolled subjects
     def show_enrollment(self):
-        print(f"\033[33m Showing {len(self.subjects)} subjects \033[0m")
+        print(f"                \033[33m Showing {len(self.subjects)} subjects \033[0m")
 
         # Print each subject in a new line
         for subject in self.subjects:
-            print(f"[ Subject::{subject.id} -- mark = {subject.mark} -- grade = {subject.calculate_grade()} ]")
+            print(f"                 [ Subject::{subject.id} -- mark = {subject.mark} -- grade = {subject.calculate_grade()} ]")
 
 class Subject:
     # Defines the subject ID and mark for a subject, randomly assigns mark
@@ -173,98 +173,23 @@ class Database:
     # Used to clear all data from the 'students.data' file
     @staticmethod
     def clear_data():
-        print("\033[33m Clearing students database \033[0m")
+        print("        \033[33m Clearing students database \033[0m")
         # Confirm the user wants to clear the database
-        choice = input("\033[31m Are you sure you want to clear the database (Y)ES/(N)O:\033[0m ").lower()
+        choice = input("        \033[31m Are you sure you want to clear the database (Y)ES/(N)O:\033[0m ").lower()
 
         if choice == "y":
             # Open the file, then empty it
             with open("students.data", "w") as file:
                 file.truncate()
-            print("\033[33m Students data cleared \033[0m")
+            print("        \033[33m Students data cleared \033[0m")
         else:
             return  
 
-    """
-    ## This is code theory, tested and doesn't work (either due to it not linking with database or issues occuring with data formatting)
-
-    ## Grouping students
-
-    @staticmethod
-    def partition_student(student,subject):
-    
-        print("\033[33m  lists \033[0m")
-        
-        students = Database.read_student_data()
-        for student in students:
-
-            if student.email == email and student.subject == subject:
-                # Going off Student formatting: Name, ID, email
-                print("subject.mark Student[2], :: Student[1], --> Student[3]")
-                return student
-
-        return None
-
-    ## Partiton pass or fail
-
-    @staticmethod
-    def partition_student(student,subject):
-    
-        print("\033[33m Students lists \033[0m")
-        
-        students = Database.read_student_data()
-        for student in students:
-
-            if student.email == email:
-                # Going off Student formatting: Name, ID, email
-                if (grade > 50)
-                    print("PASS --> Student[2], :: Student[1], --> Student[3]")
-                
-                elif
-                    print("FAIL --> Student[2], :: Student[1], --> Student[3]")
-                
-                return student
-
-        return None
-
-    ## Removing student
-
-    @staticmethod
-    def partition_student(student,subject):
-    
-        print("Remove by ID")
-        
-        students = Database.read_student_data()
-        for student in students:
-
-            if student.email == email and student.password == password::
-                # Going off Student formatting: Name, ID, email
-                print("Student[2], :: Student[1], --> Student[3]")
-                return student
-
-        print
-
-        return None
-
-    ## Show students
-
-    @staticmethod
-    def partition_student(student,subject):
-    
-        print("\033[33m Students lists \033[0m")
-        
-        students = Database.read_student_data()
-        for student in students:
-
-            if student.email == email and student.password == password:
-                # Going off Student formatting: Name, ID, email
-                print("Student[2], Student[1], Student[3]")
-
-                return student
-
-        return None
-
-    """
+    ## Things thats needs to be done is:
+    ## Grouping
+    ## Paritioning (pass/fail)
+    ## Removing singular student
+    ## Showing students
 
     # Check to see if the student already exists in the database
     @staticmethod
@@ -277,6 +202,7 @@ class Database:
 
 
 class UniversitySystem:
+
     # Starts the main menu, all others pull in from this class
 
     @staticmethod
@@ -306,7 +232,7 @@ class AdminSystem:
     def start():
         # Loop for repeatedly displaying the menu
         while True:
-            choice = input("\033[34m Admin System (c/g/p/r/s/x): \033[0m").lower()
+            choice = input("        \033[34m Admin System (c/g/p/r/s/x): \033[0m").lower()
 
             if choice == 'c':
                 Database.clear_data()
@@ -338,20 +264,20 @@ class StudentSystem:
         # Creates a loop to run the student system
         while True:
             # Get a menu option from the user
-            choice = input("\033[34m Student System (l/r/x): \033[0m").lower()
+            choice = input("        \033[34m Student System (l/r/x): \033[0m").lower()
             
             if choice == 'l':
                 # Get the login credentials
-                print("\033[32m Student Sign In \033[0m")
+                print("        \033[32m Student Sign In \033[0m")
 
                 # Creates a loop to continue prompting for credentials
                 while True:
-                    email = input("Email: ")
-                    password = input("Password: ")
+                    email = input("         Email: ")
+                    password = input("         Password: ")
 
                     # Check the formatting of the credentials against regex format
                     if re.match(Utils.EMAIL_REGEX, email) and re.match(Utils.PASSWORD_REGEX, password):
-                        print("\033[33m email and password format acceptable \033[0m")
+                        print("        \033[33m email and password format acceptable \033[0m")
 
                         # Check to see if the student is in the database
                         student = Database.verify_credentials(email, password)
@@ -361,43 +287,43 @@ class StudentSystem:
                             StudentCourseSystem.start(student)
                             break
                         else:
-                            print("\033[31m Student does not exist \033[0m")
+                            print("        \033[31m Student does not exist \033[0m")
                             break
                     else:
-                        print("\033[31m Incorrect email or password format \033[0m")
+                        print("        \033[31m Incorrect email or password format \033[0m")
 
             elif choice == 'r':
-                print("\033[32m Student Sign Up \033[0m")
+                print("        \033[32m Student Sign Up \033[0m")
 
                 # Creates a loop to continue prompting for credentials
                 while True:
                     # Get email and password
-                    email = input("Email: ")
-                    password = input("Password: ")
+                    email = input("        Email: ")
+                    password = input("        Password: ")
                     
                     # Check to see if the email and password match the required regex format
                     if re.match(Utils.EMAIL_REGEX, email) and re.match(Utils.PASSWORD_REGEX, password):
-                        print("\033[33m email and password formats acceptable \033[0m")
+                        print("         \033[33m email and password formats acceptable \033[0m")
 
                         # Check if the student exists
                         student = Database.verify_credentials(email, password)
 
                         if student:
-                            print(f"\033[31m Student {student.name} already exists \033[0m")
+                            print(f"        \033[31m Student {student.name} already exists \033[0m")
                         else:
                             # Amend the database with the new student details
-                            name = input("Name: ")
+                            name = input("        Name: ")
                             student = Student(name, email, password)
                             Database.write_student_data(student)
-                            print(f"\033[33m Enrolling Student {name} \033[0m")
+                            print(f"        \033[33m Enrolling Student {name} \033[0m")
                         break
                     else:
-                        print("\033[31m Incorrect email or password format \033[0m")
+                        print("        \033[31m Incorrect email or password format \033[0m")
 
             elif choice == 'x':
                 break
             else:
-                print("\033[31m Invalid option. Please try again. \033[0m")
+                print("        \033[31m Invalid option. Please try again. \033[0m")
 
 class StudentCourseSystem:
     # Starts the student course system
@@ -406,12 +332,12 @@ class StudentCourseSystem:
     def start(student):
         while True:
             # Chose an option within the student menu
-            choice = input("\033[34m Student Course Menu (c/e/r/s/x): \033[0m").lower()
+            choice = input("                \033[34m Student Course Menu (c/e/r/s/x): \033[0m").lower()
 
             # Change password
             if choice == 'c':
-                print("\033[33m Updating Password \033[0m")
-                new_password = input("New Password: ")
+                print("                \033[33m Updating Password \033[0m")
+                new_password = input("                 New Password: ")
                 student.change_password(new_password)
 
             # Enrol in subject
@@ -424,14 +350,14 @@ class StudentCourseSystem:
 
             # Remove subject
             elif choice == 'r':
-                subject_id = input("Remove Subject by ID: ")
+                subject_id = input("                 Remove Subject by ID: ")
                 subject = next((sub for sub in student.subjects if sub.id == subject_id), None)
                 if subject:
                     student.remove_subject(subject)
                     # Update student data in file after removing a subject
                     Database.update_student_data(student)
                 else:
-                    print("\033[31m Subject not found. \033[0m")
+                    print("                \033[31m Subject not found. \033[0m")
 
             # Show Enrolment
             elif choice == 's':
@@ -442,7 +368,7 @@ class StudentCourseSystem:
                 break
 
             else:
-                print("\033[31m Invalid option. Please try again. \033[0m")
+                print("                \033[31m Invalid option. Please try again. \033[0m")
 
 # Runs an instance of the university system
 UniversitySystem.start()
